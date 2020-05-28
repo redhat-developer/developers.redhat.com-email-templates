@@ -403,6 +403,17 @@
             <module name="contentWithTitle" label="Content with a Title">
                 <!-- MODULE CONTENT WITH TITLE: BEGIN -->
                 <editable name="contentWithTitleContent" label="Content">
+                    <field type="align" name="textAlign" label="Text alignment" default="left"></field>
+                    <field name="topSpacingsp" Label="Top Spacing" type="dropdown" default="20px">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field name="bottomSpacingsp" label="Bottom Spacing" type="dropdown" default="20px">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
                     <field type="rich" name="contentPreTitle" label="Content Pre Title Red" default="Content Pre Title"></field>
                     <field type="checkbox" name="contentPreTitleH1" label="Render Pre Title as H1, default/off is H2" default="false"></field>
                     <field type="rich" name="contentTitle" label="Content Title" default="Content Title"></field>
@@ -428,27 +439,27 @@
                 </editable>
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="margin: auto; background: #ffffff" >
                     <tr>
-                        <td bgcolor="#ffffff" style="height: 20px; margin: 0; padding: 0;">&nbsp;</td>
+                        <td bgcolor="#ffffff" replace-style="height: {{editables.contentWithTitleContent.topSpacingsp}}; margin: 0; padding: 0; font-size: 1px;">&nbsp;</td>
                     </tr>
                     <tr rule="{% remove_unless editables.contentWithTitleContent.contentPreTitle %}">
-                        <td bgcolor="#ffffff" style="padding: 0px 40px 0px 40px; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 18px; color: #000000; ">
+                        <td bgcolor="#ffffff" replace-style="padding: 0px 40px 0px 40px; text-align: {{editables.contentWithTitleContent.textAlign}}; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 18px; color: #000000; ">
                             <h1 style="color: #ee0000;" rule="{% remove_unless editables.contentWithTitleContent.contentPreTitleH1 %}" replace="{{editables.contentWithTitleContent.contentPreTitle}}">Content Title H1</h1>
                             <h2 style="color: #ee0000;" rule="{% remove_if editables.contentWithTitleContent.contentPreTitleH1 %}" replace="{{editables.contentWithTitleContent.contentPreTitle}}">Content Title H2</h2>
                         </td>
                     </tr>
                     <tr rule="{% remove_unless editables.contentWithTitleContent.contentTitle %}">
-                        <td bgcolor="#ffffff" style="padding: 0px 40px 0px 40px; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 18px; color: #000000; ">
+                        <td bgcolor="#ffffff" replace-style="padding: 0px 40px 0px 40px; text-align: {{editables.contentWithTitleContent.textAlign}}; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 18px; color: #000000; ">
                             <h1 rule="{% remove_unless editables.contentWithTitleContent.contentTitleH1 %}" replace="{{editables.contentWithTitleContent.contentTitle}}">Content Title H1</h1>
                             <h2 rule="{% remove_if editables.contentWithTitleContent.contentTitleH1 %}" replace="{{editables.contentWithTitleContent.contentTitle}}">Content Title H2</h2>
                         </td>
                     </tr>
                     <tr rule="{% remove_unless editables.contentWithTitleContent.content %}">
-                        <td bgcolor="#ffffff" style="padding: 0px 40px 0px 40px; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
+                        <td bgcolor="#ffffff" replace-style="padding: 0px 40px 10px 40px; text-align: {{editables.contentWithTitleContent.textAlign}}; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
                             <div replace="{{editables.contentWithTitleContent.content}}">Lorem ipsum dolor sit amet consectetur adipiscing elit. Duis lorem urna fringilla in turpis at molestie commodo mi. Donec vulputate risus vitae hendrerit ultricies ipsum metus venenatis tortor.</div>
                         </td>
                     </tr>
                     <tr rule="{% remove_unless editables.contentWithTitleContent.ul %}">
-                        <td bgcolor="#ffffff" style="padding: 0px 40px 0px 40px; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
+                        <td bgcolor="#ffffff" style="padding: 0px 40px 10px 40px; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
                             <p rule="{% remove_unless editables.contentWithTitleContent.ulTitle %}" replace="{{editables.contentWithTitleContent.ulTitle}}">Bulleted list:</p>
                             <ul>
                                 <li style="margin-bottom: 10px;" rule="{% show_if editables.contentWithTitleContent.bullet1 %}"><content replace="{{editables.contentWithTitleContent.bullet1}}">List item 1</content></li>
@@ -464,7 +475,7 @@
                         </td>
                     </tr>
                     <tr rule="{% remove_unless editables.contentWithTitleContent.contentFooter %}">
-                        <td bgcolor="#ffffff" style="padding: 0px 40px 0px 40px; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
+                        <td bgcolor="#ffffff" replace-style="padding: 0px 40px 10px 40px; text-align: {{editables.contentWithTitleContent.textAlign}}; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
                             <div replace="{{editables.contentWithTitleContent.contentFooter}}">Lorem ipsum dolor sit amet consectetur adipiscing elit. Duis lorem urna fringilla in turpis at molestie commodo mi. Donec vulputate risus vitae hendrerit ultricies ipsum metus venenatis tortor.</div>
                         </td>
                     </tr>                         
@@ -481,7 +492,7 @@
                     </tr>
 
                     <tr>
-                        <td bgcolor="#ffffff" style="height: 20px; margin: 0; padding: 0;">&nbsp;</td>
+                        <td bgcolor="#ffffff" replace-style="height: {{editables.contentWithTitleContent.bottomSpacingsp}}; margin: 0; padding: 0; font-size: 1px;">&nbsp;</td>
                     </tr>
                 </table>
                 <!-- MODULE CONTENT WITH TITLE: END -->
@@ -490,6 +501,7 @@
             <module name="contentWithTitleGrey" label="Content with a Title Grey Background">
                 <!-- MODULE CONTENT WITH TITLE GREY: BEGIN -->
                 <editable name="contentWithTitleContentGrey" label="Content">
+                    <field type="align" name="textAlign" label="Text alignment" default="left"></field>
                     <field type="rich" name="contentPreTitle" label="Content Pre Title Red" default="Content Pre Title"></field>
                     <field type="checkbox" name="contentPreTitleH1" label="Render Pre Title as H1, default/off is H2" default="false"></field>
                     <field type="rich" name="contentTitle" label="Content Title" default="Content Title"></field>
@@ -513,27 +525,27 @@
                         <field type="href" name="ctaLink" label="CTA Link" default="#"></field>
                     </field>
                 </editable>
-                <div style="background-color:#E5E5E5; border:1px solid #CCCCCC; margin: 20px 40px 20px 40px; padding:30px 20px;">
+                <div style="background-color:#E5E5E5; border:1px solid #CCCCCC; margin: 20px 40px 20px 40px; padding:10px 20px;">
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="margin: auto; background: transparent" >
                         <tr rule="{% remove_unless editables.contentWithTitleContentGrey.contentPreTitle %}">
-                            <td bgcolor="transparent" style="padding: 0; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 18px; color: #000000; ">
+                            <td bgcolor="transparent" replace-style="padding: 0; text-align: {{editables.contentWithTitleContentGrey.textAlign}}; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 18px; color: #000000; ">
                                 <h1 style="color: #ee0000;" rule="{% remove_unless editables.contentWithTitleContentGrey.contentPreTitleH1 %}" replace="{{editables.contentWithTitleContentGrey.contentPreTitle}}">Content Title H1</h1>
                                 <h2 style="color: #ee0000;" rule="{% remove_if editables.contentWithTitleContentGrey.contentPreTitleH1 %}" replace="{{editables.contentWithTitleContentGrey.contentPreTitle}}">Content Title H2</h2>
                             </td>
                         </tr>
                         <tr rule="{% remove_unless editables.contentWithTitleContentGrey.contentTitle %}">
-                            <td bgcolor="transparent" style="padding: 0; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; color: #000000;">
+                            <td bgcolor="transparent" replace-style="padding: 0; text-align: {{editables.contentWithTitleContentGrey.textAlign}}; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; color: #000000;">
                                 <h1 rule="{% remove_unless editables.contentWithTitleContentGrey.contentTitleH1 %}" replace="{{editables.contentWithTitleContentGrey.contentTitle}}">Content Title H1</h1>
                                 <h2 rule="{% remove_if editables.contentWithTitleContentGrey.contentTitleH1 %}" replace="{{editables.contentWithTitleContentGrey.contentTitle}}">Content Title H2</h2>
                             </td>
                         </tr>
                         <tr rule="{% remove_unless editables.contentWithTitleContentGrey.content %}">
-                            <td bgcolor="transparent" style="padding: 0; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
+                            <td bgcolor="transparent" replace-style="padding: 0 0 10px 0; text-align: {{editables.contentWithTitleContentGrey.textAlign}}; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
                                 <div replace="{{editables.contentWithTitleContentGrey.content}}">Lorem ipsum dolor sit amet consectetur adipiscing elit. Duis lorem urna fringilla in turpis at molestie commodo mi. Donec vulputate risus vitae hendrerit ultricies ipsum metus venenatis tortor.</div>
                             </td>
                         </tr>
                         <tr rule="{% remove_unless editables.contentWithTitleContentGrey.ul %}">
-                            <td bgcolor="transparent" style="padding: 0; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
+                            <td bgcolor="transparent" style="padding: 0 0 10px 0; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
                                 <p rule="{% remove_unless editables.contentWithTitleContentGrey.ulTitle %}" replace="{{editables.contentWithTitleContentGrey.ulTitle}}">Bulleted list:</p>
                                 <ul>
                                     <li style="margin-bottom: 10px;" rule="{% show_if editables.contentWithTitleContentGrey.bullet1 %}"><content replace="{{editables.contentWithTitleContentGrey.bullet1}}">List item 1</content></li>
@@ -549,7 +561,7 @@
                             </td>
                         </tr>
                         <tr rule="{% remove_unless editables.contentWithTitleContentGrey.contentFooter %}">
-                            <td bgcolor="transparent" style="padding: 0; text-align: left; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
+                            <td bgcolor="transparent" replace-style="padding: 0 0 10px 0; text-align: {{editables.contentWithTitleContentGrey.textAlign}}; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 14px; color: #000000; ">
                                 <div replace="{{editables.contentWithTitleContentGrey.contentFooter}}">Lorem ipsum dolor sit amet consectetur adipiscing elit. Duis lorem urna fringilla in turpis at molestie commodo mi. Donec vulputate risus vitae hendrerit ultricies ipsum metus venenatis tortor.</div>
                             </td>
                         </tr>
@@ -568,57 +580,87 @@
                 </div>
                 <!-- MODULE CONTENT WITH TITLE GREY : END -->
             </module>
-
+            <module name="callToAction" label="Call to action">
+                <!-- MODULE CTA: BEGIN -->
+                <editable name="callToActionContent" label="Content">
+                    <field name="topSpacingsp" Label="Top Spacing" type="dropdown" default="20px">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field name="bottomSpacingsp" label="Bottom Spacing" type="dropdown" default="20px">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field type="text" name="ctaTitle" label="CTA Title" default="Call to action"></field>
+                    <field type="href" name="ctaLink" label="CTA Link" default="#"></field>
+                </editable> 
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="margin: auto; background: #ffffff" >
+                    <tr>
+                        <td bgcolor="#ffffff" replace-style="padding:{{editables.callToActionContent.topSpacingsp}} 40px {{editables.callToActionContent.bottomSpacingsp}} 40px; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 15px;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0"  align="center" style="margin: auto; min-width: 200px; max-width: 300px;">
+                                <tr>
+                                    <td style="border-radius: 0px; background: #ee0000; text-align: center;" class="button-td" width="50%">
+                                        <a replace-href="{{editables.callToActionContent.ctaLink}}" href="#" style="background: #ee0000; border: 12px solid #ee0000; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 18px; line-height: 1.3; text-align: center; text-decoration: none; display: block; border-radius: 0px;  text-transform: uppercase; mso-line-height-rule: exactly;" class="button-a">&nbsp;&nbsp;<span style="color:#ffffff; font-weight:bolder;"><content replace="{{editables.callToActionContent.ctaTitle}}">Call to action</content></span>&nbsp;&nbsp;</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- MODULE CTA : END -->
+            </module>
         </modulezone>
         </div>
         <!-- FOOTER : BEGIN-->
         <modulezone name="footer" label="Footer">
-        <module name="socialFooterBar" label="Social Footer Bar">
-        <div style="background-color: #e7e7e7d5; border-top: #ddd 2px solid;">
-            <table align="center" border="0" cellpadding="20px" cellspacing="0" width="100%">
+            <module name="socialFooterBar" label="Social Footer Bar">
+            <div style="background-color: #e7e7e7d5; border-top: #ddd 2px solid;">
+                <table align="center" border="0" cellpadding="20px" cellspacing="0" width="100%">
+                    <tr>
+                        <td align="center" valign="top">
+                            <table width="160" cellpadding="0" cellspacing="0" border="0" class="right">
+                                <tr>
+                                    <td width="40" align="center">
+                                        <a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank"><img
+                                                src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/%7b959c0161-c15e-48d4-9aad-1c681e8e2da8%7d_social-youtube-28x19.png"
+                                                width="28" height="19" style="margin:0; padding:0; border:none; display:block;"
+                                                border="0" alt="YouTube"></a>
+                                    </td>
+                                    <td width="40" align="center">
+                                        <a href="https://www.facebook.com/RedHatDeveloperProgram/" target="_blank"><img
+                                                src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/%7b3cc3632e-f415-4fe0-8d31-f827215740d7%7d_social-facebook-18x19.png"
+                                                width="18" height="19" style="margin:0; padding:0; border:none; display:block;"
+                                                border="0" alt="facebook"></a>
+                                    </td>
+                                    <td width="40" align="center">
+                                        <a href="https://twitter.com/rhdevelopers" target="_blank"><img src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/%7b69f9aa1c-307f-4d77-8649-3cc723749e42%7d_social-twitter-18x19.png"
+                                                width="18" height="19" style="margin:0; padding:0; border:none; display:block;"
+                                                border="0" alt="Twitter"></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            </module>
+            <module name="developerLinkFooterBar" label="Developer Link Footer Bar">
+            <div style="background-color: #252525;">
+                <table class="footer" align="center" border="0" cellpadding="15px" cellspacing="0" style="text-align:center;" width="100%">
                 <tr>
-                    <td align="center" valign="top">
-                        <table width="160" cellpadding="0" cellspacing="0" border="0" class="right">
-                            <tr>
-                                <td width="40" align="center">
-                                    <a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank"><img
-                                            src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/%7b959c0161-c15e-48d4-9aad-1c681e8e2da8%7d_social-youtube-28x19.png"
-                                            width="28" height="19" style="margin:0; padding:0; border:none; display:block;"
-                                            border="0" alt="YouTube"></a>
-                                </td>
-                                <td width="40" align="center">
-                                    <a href="https://www.facebook.com/RedHatDeveloperProgram/" target="_blank"><img
-                                            src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/%7b3cc3632e-f415-4fe0-8d31-f827215740d7%7d_social-facebook-18x19.png"
-                                            width="18" height="19" style="margin:0; padding:0; border:none; display:block;"
-                                            border="0" alt="facebook"></a>
-                                </td>
-                                <td width="40" align="center">
-                                    <a href="https://twitter.com/rhdevelopers" target="_blank"><img src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/%7b69f9aa1c-307f-4d77-8649-3cc723749e42%7d_social-twitter-18x19.png"
-                                            width="18" height="19" style="margin:0; padding:0; border:none; display:block;"
-                                            border="0" alt="Twitter"></a>
-                                </td>
-                            </tr>
-                        </table>
+                    <td align="center" valign="top" width="100%" class="footer" style="text-align: center; color:#d3d3d3; font-size:11px; line-height:16px;">
+                        <p>
+                            <editable name="mainFooterLink" label="Main Footer Link">
+                            <a style="color:#d3d3d3; text-decoration: underline;" href="https://developers.redhat.com/?sc_cid=701f2000000u60c">Red Hat Developer</a>
+                            </editable>
+                        </p>
                     </td>
                 </tr>
-            </table>
-        </div>
-        </module>
-        <module name="developerLinkFooterBar" label="Developer Link Footer Bar">
-        <div style="background-color: #252525;">
-            <table class="footer" align="center" border="0" cellpadding="15px" cellspacing="0" style="text-align:center;" width="100%">
-            <tr>
-                <td align="center" valign="top" width="100%" class="footer" style="text-align: center; color:#d3d3d3; font-size:11px; line-height:16px;">
-                    <p>
-                        <editable name="mainFooterLink" label="Main Footer Link">
-                        <a style="color:#d3d3d3; text-decoration: underline;" href="https://developers.redhat.com/?sc_cid=701f2000000u60c">Red Hat Developer</a>
-                        </editable>
-                    </p>
-                </td>
-            </tr>
-            </table>
-        </div>
-        </module>
+                </table>
+            </div>
+            </module>
         </modulezone>
         <!-- FOOTER : END -->
     </div>
