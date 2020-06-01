@@ -96,20 +96,20 @@
 
         h1,h2,h3,h4,h5,h6 {
             color: #000;
-            margin: 5px 0;
+            margin: 0;
             font-weight: 400;
         }
 
         h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
-            color: #ee0000 !important;
+            color: #ee0000;
         }
 
         h1 a:active,h2 a:active,h3 a:active,h4 a:active,h5 a:active,h6 a:active {
-            color: #ee0000 !important;
+            color: #ee0000;
         }
 
         h1 a:visited,h2 a:visited,h3 a:visited,h4 a:visited,h5 a:visited,h6 a:visited {
-            color: #ee0000 !important;
+            color: #ee0000;
         }
 
         a {
@@ -610,6 +610,79 @@
                     </tr>
                 </table>
                 <!-- MODULE CTA : END -->
+            </module>
+            <module name="contentTitle" label="Content Title">
+                <!-- MODULE contentTitle: BEGIN -->
+                <editable name="contentTitleContent" label="Content">
+                    <field name="topSpacingsp" Label="Top Spacing" type="dropdown" default="10px">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field name="bottomSpacingsp" label="Bottom Spacing" type="dropdown" default="20px">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field name="contentTitleColor" label="Title Color" type="dropdown" default="#ee0000">
+                        <choice label="Brand Red" value="#ee0000"></choice>
+                        <choice label="Brand Black" value="#151515"></choice>
+                        <choice label="Brand Grey" value="#737679"></choice>
+                    </field>
+                    <field name="contentTitleSize" Label="Title Size" type="dropdown" default="28px">
+                        <choice label="Extra Large" value="32px"></choice>
+                        <choice label="Large" value="28px"></choice>
+                        <choice label="Medium" value="20px"></choice>
+                        <choice label="Small" value="18px"></choice>
+                        <choice label="Extra Small" value="16px"></choice>
+                    </field>
+                    <field type="align" name="contentTitleAlign" label="Title Alignment" default="left"></field>
+                    <field type="text" name="contentTitle" label="Title" default="Title"></field>
+                    <field type="checkbox" name="contentTitleH1" label="Render Title as H1, default/off is H2" default="false"></field>
+                </editable> 
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="margin: auto; background: #ffffff" >
+                    <tr>
+                        <td bgcolor="#ffffff" replace-style="text-align: {{editables.contentTitleContent.contentTitleAlign}}; padding: {{editables.contentTitleContent.topSpacingsp}} 40px {{editables.contentTitleContent.bottomSpacingsp}} 40px; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 15px;">
+                            <h1 replace-style="font-size: {{editables.contentTitleContent.contentTitleSize}}; color: {{editables.contentTitleContent.contentTitleColor}}; padding: 0; margin: 0;" rule="{% remove_unless editables.contentTitleContent.contentTitleH1 %}" replace="{{editables.contentTitleContent.contentTitle}}">Content Title H1</h1>
+                            <h2 replace-style="font-size: {{editables.contentTitleContent.contentTitleSize}}; color: {{editables.contentTitleContent.contentTitleColor}}; padding: 0; margin: 0;" rule="{% remove_if editables.contentTitleContent.contentTitleH1 %}" replace="{{editables.contentTitleContent.contentTitle}}">Content Title H2</h2>
+                        </td>
+                    </tr>
+                </table>
+                <!-- MODULE contentTitle : END -->
+            </module>
+            <module name="contentParagraph" label="Content Paragraph">
+                <!-- MODULE contentParagraph: BEGIN -->
+                <editable name="contentParagraphContent" label="Content">
+                    <field name="topSpacingsp" Label="Top Spacing" type="dropdown" default="0">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field name="bottomSpacingsp" label="Bottom Spacing" type="dropdown" default="10px">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field name="contentParagraphColor" label="Paragraph Color" type="dropdown" default="#151515">
+                        <choice label="Brand Red" value="#ee0000"></choice>
+                        <choice label="Brand Black" value="#151515"></choice>
+                        <choice label="Brand Grey" value="#737679"></choice>
+                    </field>
+                    <field name="contentParagraphSize" Label="Paragraph Size" type="dropdown" default="14px">
+                        <choice label="Standard" value="14px"></choice>
+                        <choice label="Small" value="12px"></choice>
+                    </field>
+                    <field type="align" name="contentParagraphAlign" label="Paragraph Alignment" default="left"></field>
+                    <field type="text" name="contentParagraph" label="Paragraph Content" default="Paragraph Content"></field>
+                </editable> 
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="margin: auto; background: #ffffff" >
+                    <tr>
+                        <td bgcolor="#ffffff" replace-style="text-align: {{editables.contentParagraphContent.contentParagraphAlign}}; padding: {{editables.contentParagraphContent.topSpacingsp}} 40px {{editables.contentParagraphContent.bottomSpacingsp}} 40px; font-family:'Red Hat Display',  Helvetica, helvetica, arial, sans-serif; font-size: 15px;">
+                            <p replace-style="font-size: {{editables.contentParagraphContent.contentParagraphSize}}; color: {{editables.contentParagraphContent.contentParagraphColor}}; padding: 0; margin: 0;" replace="{{editables.contentParagraphContent.contentParagraph}}">Paragraph Content</p>
+                        </td>
+                    </tr>
+                </table>
+                <!-- MODULE contentParagraph : END -->
             </module>
         </modulezone>
         </div>
