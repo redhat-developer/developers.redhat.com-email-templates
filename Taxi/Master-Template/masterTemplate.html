@@ -775,6 +775,117 @@
                 </table>
                 <!-- MODULE contentUnordedList : END -->
             </module>
+            <module name="iamgeGrid" label="Content Image Grid">
+                <!-- MODULE iamgeGrid: BEGIN -->
+                <editable name="contentImageGrid" label="Content">
+                    <field name="topSpacingsp" Label="Top Spacing" type="dropdown" default="0">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field name="bottomSpacingsp" label="Bottom Spacing" type="dropdown" default="10px">
+                        <choice label="Large" value="20px"></choice>
+                        <choice label="Small" value="10px"></choice>
+                        <choice label="None" value="0"></choice>
+                    </field>
+                    <field name="firstImageControls" label="Edit First image" type="checkbox" default="true">
+                        <field type="src" name="firstImage" label="First Image" default="https://picsum.photos/100/200"></field>
+                        <field type="text" name="firstImageAlt" label="First Image Alt" default="First Image Alt"></field>
+                        <field type="href" name="firstImageLink" label="First Image Link" default=""></field>
+                        <field type="text" name="firstImageLinkTitle" label="First Image Link Title" default=""></field>
+                        <field type="number" name="firstImageWidth" label="First Image Width" default="100"></field>
+                        <field name="firstImageWidthUnit" label="Width Unit" type="dropdown" default="%">
+                            <choice label="Percent" value="%"></choice>
+                            <choice label="Pixels" value=""></choice>
+                        </field>
+                        <field type="number" name="firstImageHeight" label="First Image Height" default="200"></field>
+                        <field name="firstImageHeightUnit" label="Height Unit" type="dropdown" default="">
+                            <choice label="Percent" value="%"></choice>
+                            <choice label="Pixels" value=""></choice>
+                        </field>
+                    </field>
+                    <field name="secondImageControls" label="Edit Second image" type="checkbox" default="false">
+                        <field type="src" name="secondImage" label="Second Image" default="https://picsum.photos/100/200"></field>
+                        <field type="text" name="secondImageAlt" label="Second Image Alt" default="Second Image Alt"></field>
+                        <field type="href" name="secondImageLink" label="Second Image Link" default=""></field>
+                        <field type="text" name="secondImageLinkTitle" label="Second Image Link Title" default=""></field>
+                        <field type="number" name="secondImageWidth" label="Second Image Width" default="100"></field>
+                        <field name="secondImageWidthUnit" label="Width Unit" type="dropdown" default="%">
+                            <choice label="Percent" value="%"></choice>
+                            <choice label="Pixels" value=""></choice>
+                        </field>
+                        <field type="number" name="secondImageHeight" label="Second Image Height" default="200"></field>
+                        <field name="secondImageHeightUnit" label="Height Unit" type="dropdown" default="">
+                            <choice label="Percent" value="%"></choice>
+                            <choice label="Pixels" value=""></choice>
+                        </field>
+                    </field>
+                    <field name="thirdImageControls" label="Edit Third image" type="checkbox" default="false">
+                        <field type="src" name="thirdImage" label="Third Image" default="https://picsum.photos/100/200"></field>
+                        <field type="text" name="thirdImageAlt" label="Third Image Alt" default="Third Image Alt"></field>
+                        <field type="href" name="thirdImageLink" label="Third Image Link" default=""></field>
+                        <field type="text" name="thirdImageLinkTitle" label="Third Image Link Title" default=""></field>
+                        <field type="number" name="thirdImageWidth" label="Third Image Width" default="100"></field>
+                        <field name="thirdImageWidthUnit" label="Width Unit" type="dropdown" default="%">
+                            <choice label="Percent" value="%"></choice>
+                            <choice label="Pixels" value=""></choice>
+                        </field>
+                        <field type="number" name="thirdImageHeight" label="Third Image Height" default="200"></field>
+                        <field name="thirdImageHeightUnit" label="Height Unit" type="dropdown" default="">
+                            <choice label="Percent" value="%"></choice>
+                            <choice label="Pixels" value=""></choice>
+                        </field>
+                    </field>
+                    <field name="fourthImageControls" label="Edit Fourth image" type="checkbox" default="false">
+                        <field type="src" name="fourthImage" label="Fourth Image" default="https://picsum.photos/100/200"></field>
+                        <field type="text" name="fourthImageAlt" label="Fourth Image Alt" default="Fourth Image Alt"></field>
+                        <field type="href" name="fourthImageLink" label="Fourth Image Link" default=""></field>
+                        <field type="text" name="fourthImageLinkTitle" label="Fourth Image Link Title" default=""></field>
+                        <field type="number" name="fourthImageWidth" label="Fourth Image Width" default="100"></field>
+                        <field name="fourthImageWidthUnit" label="Width Unit" type="dropdown" default="%">
+                            <choice label="Percent" value="%"></choice>
+                            <choice label="Pixels" value=""></choice>
+                        </field>
+                        <field type="number" name="fourthImageHeight" label="Fourth Image Height" default="200"></field>
+                        <field name="fourthImageHeightUnit" label="Height Unit" type="dropdown" default="">
+                            <choice label="Percent" value="%"></choice>
+                            <choice label="Pixels" value=""></choice>
+                        </field>
+                    </field>
+                </editable> 
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="margin: auto; background: #ffffff;" >
+                    <tr>
+                        <td replace-style="padding: {{editables.contentImageGrid.topSpacingsp}} 30px {{editables.contentImageGrid.bottomSpacingsp}} 30px; background: #ffffff;" style="padding: 10px 40px 10px 40px; background: #ffffff;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
+                                <tr>
+                                    <td bgcolor="#ffffff" valign="middle" align="center" style="margin:0; padding:0 10px;" rule="{% show_if editables.contentImageGrid.firstImage %}">
+                                        <a rule="{% remove_outer_unless editables.contentImageGrid.firstImageLink %}" replace-href="{{editables.contentImageGrid.firstImageLink}}" replace-title="{{editables.contentImageGrid.firstImageLinkTitle}}">
+                                            <img replace-src="{{editables.contentImageGrid.firstImage}}" src="https://picsum.photos/100/200" replace-alt="{{editables.contentImageGrid.firstImageAlt}}" replace-width="{{editables.contentImageGrid.firstImageWidth}}{% if editables.contentImageGrid.firstImageWidth %}{{editables.contentImageGrid.firstImageWidthUnit}}{% endif %}" replace-height="{{editables.contentImageGrid.firstImageHeight}}{% if editables.contentImageGrid.firstImageHeight %}{{editables.contentImageGrid.firstImageHeightUnit}}{% endif %}" />
+                                        </a>
+                                    </td>
+                                    <td bgcolor="#ffffff" valign="middle" align="center" style="margin:0; padding:0 10px;" rule="{% show_if editables.contentImageGrid.secondImage %}" replace-title="{{editables.contentImageGrid.secondImageLinkTitle}}">
+                                        <a rule="{% remove_outer_unless editables.contentImageGrid.secondImageLink %}" replace-href="{{editables.contentImageGrid.secondImageLink}}">
+                                            <img replace-src="{{editables.contentImageGrid.secondImage}}" src="https://picsum.photos/100/200" replace-alt="{{editables.contentImageGrid.secondImageAlt}}" replace-width="{{editables.contentImageGrid.secondImageWidth}}{% if editables.contentImageGrid.secondImageWidth %}{{editables.contentImageGrid.secondImageWidthUnit}}{% endif %}" replace-height="{{editables.contentImageGrid.secondImageHeight}}{% if editables.contentImageGrid.secondImageHeight %}{{editables.contentImageGrid.secondImageHeightUnit}}{% endif %}" />
+                                        </a>
+                                    </td>
+                                    <td bgcolor="#ffffff" valign="middle" align="center" style="margin:0; padding:0 10px;" rule="{% show_if editables.contentImageGrid.thirdImage %}" replace-title="{{editables.contentImageGrid.thirdImageLinkTitle}}">
+                                        <a rule="{% remove_outer_unless editables.contentImageGrid.thirdImageLink %}" replace-href="{{editables.contentImageGrid.thirdImageLink}}">
+                                            <img replace-src="{{editables.contentImageGrid.thirdImage}}" src="https://picsum.photos/100/200" replace-alt="{{editables.contentImageGrid.thirdImageAlt}}" replace-width="{{editables.contentImageGrid.thirdImageWidth}}{% if editables.contentImageGrid.thirdImageWidth %}{{editables.contentImageGrid.thirdImageWidthUnit}}{% endif %}" replace-height="{{editables.contentImageGrid.thirdImageHeight}}{% if editables.contentImageGrid.thirdImageHeight %}{{editables.contentImageGrid.thirdImageHeightUnit}}{% endif %}" />
+                                        </a>
+                                    </td>
+                                    <td bgcolor="#ffffff" valign="middle" align="center" style="margin:0; padding:0 10px;" rule="{% show_if editables.contentImageGrid.fourthImage %}" replace-title="{{editables.contentImageGrid.fourthImageLinkTitle}}">
+                                        <a rule="{% remove_outer_unless editables.contentImageGrid.fourthImageLink %}" replace-href="{{editables.contentImageGrid.fourthImageLink}}">
+                                            <img replace-src="{{editables.contentImageGrid.fourthImage}}" src="https://picsum.photos/100/200" replace-alt="{{editables.contentImageGrid.fourthImageAlt}}" replace-width="{{editables.contentImageGrid.fourthImageWidth}}{% if editables.contentImageGrid.fourthImageWidth %}{{editables.contentImageGrid.fourthImageWidthUnit}}{% endif %}" replace-height="{{editables.contentImageGrid.fourthImageHeight}}{% if editables.contentImageGrid.fourthImageHeight %}{{editables.contentImageGrid.fourthImageHeightUnit}}{% endif %}" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- MODULE iamgeGrid : END -->
+            </module>
+
         </modulezone>
         </div>
         <!-- FOOTER : BEGIN-->
